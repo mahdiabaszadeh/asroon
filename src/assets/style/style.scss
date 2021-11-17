@@ -54,3 +54,60 @@ body {
   display: block;
   padding: 5px 0;
 }
+
+.icon-button {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  display: block;
+  padding: 0;
+  margin: auto;
+  transition: 200ms all ease-in-out;
+  &:hover,
+  &:active {
+    background-color: transparent;
+    svg {
+      transform: scale(1.2);
+    }
+  }
+}
+
+.table {
+  box-shadow: 0px 2px 4px 0px $dark;
+  border-radius: 6px;
+  overflow: hidden;
+  > thead {
+    background-color: $light_table;
+    th {
+      border: none;
+      color: $light_dark;
+      font-size: 0.8rem;
+      font-weight: normal;
+      text-align: center;
+    }
+  }
+  > tbody {
+    border-top: 1px solid $dark_shadow !important;
+    tr:nth-child(odd) {
+      background-color: $dark_table;
+    }
+    tr:nth-child(even) {
+      background-color: $light_table;
+    }
+    td {
+      color: $light_dark;
+      text-align: center;
+    }
+  }
+  tr {
+    height: 56px !important;
+  }
+  th,
+  td {
+    vertical-align: middle;
+    border: none;
+  }
+}
