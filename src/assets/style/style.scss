@@ -1,0 +1,56 @@
+@import "../fonts/stylesheet.css";
+@import "./variables";
+body {
+  direction: rtl;
+  font-family: "Yekan";
+  font-size: 15px;
+  color: $dark;
+  background-color: $background;
+}
+.app {
+  padding: 20px 0;
+}
+
+.logo-container {
+  padding: 32px 0;
+  .logo-image {
+    width: 125px;
+    height: auto;
+    object-fit: cover;
+    margin: auto;
+  }
+}
+
+.register-container {
+  background-color: $white;
+  border-radius: 6px;
+  border: 1px solid $dark_shadow;
+  box-shadow: 0px 1px 2px 0px rgba($color: $dark, $alpha: 0.14);
+  padding: 17px;
+  .form-title {
+    padding: 10px 0;
+    font-size: 1.6rem;
+    font-weight: 600;
+  }
+  .form-label,
+  .form-control {
+    color: $light_dark;
+  }
+  .form-label {
+    font-size: 0.8rem;
+  }
+  .form-control {
+    font-size: 1rem;
+  }
+}
+
+.btn-danger {
+  background-color: $danger;
+  font-size: 1rem;
+}
+
+.error-text {
+  color: $danger;
+  display: block;
+  padding: 5px 0;
+}
