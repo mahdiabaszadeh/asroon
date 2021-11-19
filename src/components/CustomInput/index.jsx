@@ -29,6 +29,7 @@ const CustomInput = ({
         control={control}
         render={({ field: { onChange, onBlur, value, name, ref } }) => (
           <>
+            {console.log(value)}
             {labelText && (
               <FormLabel className={labelClassName} htmlFor={id}>
                 {labelText}

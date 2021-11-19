@@ -4,18 +4,20 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Form, Button, Col } from "react-bootstrap";
 import CustomInput from "../components/CustomInput";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RegisterAction } from "../store/action/userAction";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const RegisterForm = () => {
+  const { userData } = useSelector((state) => ({ userData: state.user.data }));
+  const param = useLocation().search;
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const defaultValues = {
-    fullName: "",
-    phoneNumber: "",
-    age: "",
-    email: "",
+    fullName: param === "?edit" ? userData.fullName : "",
+    phoneNumber: param === "?edit" ? userData.phoneNumber : "",
+    age: param === "?edit" ? userData.age : "",
+    email: param === "?edit" ? userData.email : "",
   };
 
   const phoneRegExp =
@@ -37,10 +39,10 @@ const RegisterForm = () => {
     defaultValues: defaultValues,
     resolver: yupResolver(schema),
   });
+
   const { handleSubmit } = method;
 
   const submitHandler = (data) => {
-    console.log(data);
     let current_datetime = new Date();
     let createdDate =
       current_datetime.getDate() +
@@ -58,9 +60,9 @@ const RegisterForm = () => {
       <h2 className="form-title">فرم زیر را پر کنید</h2>
       <FormProvider {...method}>
         <Form
-          id="login"
-          name="Login-Form"
-          data-name="Login Form"
+          id="register"
+          name="register-Form"
+          data-name="Register Form"
           method="post"
           ms-login="true"
           onSubmit={handleSubmit(submitHandler)}
@@ -69,18 +71,12 @@ const RegisterForm = () => {
             <CustomInput
               type="text"
               name="fullName"
+              value={defaultValues.fullName}
               id="fullName"
               labelText="نام و نام خانوادگی"
               inputClassName={null}
               placeholder="نام و نام خانوادگی شما"
             />
-            {/* <Form.Label>نام و نام خانوادگی</Form.Label>
-            <Form.Control
-              type="text"
-              name="fullName"
-              id="fullName"
-              placeholder="نام و نام خانوادگی شما"
-            /> */}
           </Form.Group>
 
           <Form.Group className="mb-3">
@@ -117,7 +113,7 @@ const RegisterForm = () => {
           </Form.Group>
           <div className="d-grid gap-2">
             <Button variant="danger" size="lg" type="submit">
-              ساخت اکانت
+              {param === "?edit" ? "اعمال تغییرات" : "ساخت اکانت"}
             </Button>
           </div>
         </Form>
